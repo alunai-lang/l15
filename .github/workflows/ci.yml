@@ -1,3 +1,4 @@
+
 name: React CI/CD Pipeline
 
 # This triggers the workflow on pushes and pull requests to the main branch
@@ -102,22 +103,15 @@ jobs:
       #     # REEMPLAZA: Cambia 'https://vercel.app' por tu URL real de Vercel
       #     config: baseUrl=https://labs15c-kum941qfh-ados-projects-0eb7f124.vercel.app/
 
-      # - name: Install Dependencies
-      #   run: npm install #' / 'yarn install' / 'pnpm install'
-      #   working-directory: cypress-tests # 👈 This tells npm where to find package.json
-      - name: Instalar Cypress Manualmente
-        # Forzamos la instalación directa de Cypress en el directorio correcto
-        run: |
-          npm install cypress --save-dev
-          npm install
-        working-directory: cypress-tests
+      - name: Install Dependencies
+        run: npm install #' / 'yarn install' / 'pnpm install'
+        working-directory: cypress-tests # 👈 This tells npm where to find package.json
 
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
           working-directory: cypress-tests
-          #install-command: npm ci 
-          install: false #
+          install: false
           config: baseUrl=https://l15-ojq8lhcdm-ados-projects-0eb7f124.vercel.app/
           component: false
           record: false
