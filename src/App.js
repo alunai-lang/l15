@@ -165,7 +165,7 @@ return (
       <form onSubmit={handleSubmit}>
         <fieldset>
           <label>
-            <p style={{ fontWeight: 'bold', color: 'blue' } } >Código (mínimo 5 caracteres)</p>
+            <p style={{ fontWeight: 'bold', color: 'blue' } } >Código (minimo 5 caracteres)</p>
             <input name="code" value={inputValue1} onChange={handleChange1} minLength={5} placeholder="Ingrese código" /> {/* placeholder="Ingrese como mínimo 5 caracteres"  */}
           </label>
            
