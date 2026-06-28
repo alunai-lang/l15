@@ -117,7 +117,7 @@ jobs:
         with:
           working-directory: cypress-tests
           #install-command: npm ci 
-          install: false
+          install: false #
           config: baseUrl=https://l15-ojq8lhcdm-ados-projects-0eb7f124.vercel.app/
           component: false
           record: false
