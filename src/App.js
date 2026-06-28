@@ -175,7 +175,7 @@ return (
           </label>
 
            <label>
-            <p style={{ fontWeight: 'bold', color: 'blue' } } >Descripción</p>
+            <p style={{ fontWeight: 'bold', color: 'blue' } } >Description</p>
             <input name="nom" value={inputValueD} onChange={handleChangeD} minLength={2} placeholder="Ingrese descripción" /> {/* placeholder="Ingrese como mínimo 2 caracteres" */}
           </label>
 
