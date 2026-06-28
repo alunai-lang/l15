@@ -110,8 +110,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: cypress-tests
-          install: false
-          config: baseUrl=https://labs15c-kum941qfh-ados-projects-0eb7f124.vercel.app/
+          #install: false
+          config: baseUrl=https://l15-ojq8lhcdm-ados-projects-0eb7f124.vercel.app/
           component: false
           record: false
           publish-summary: true
