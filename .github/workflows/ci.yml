@@ -59,17 +59,18 @@ jobs:
     runs-on: ubuntu-latest
     needs: tests  # Ensures the deploy job runs only after the build job completes successfully
 
+    outputs:
+      vercel_url: ${{ steps.deploy-vercel.outputs.DEPLOY_URL }}
     steps:
       - name: Checkout code
-        uses: actions/checkout@v2  #  Re-checks out the code for deployment
+        uses: actions/checkout@v4 #  Re-checks out the code for deployment
 
       - name: Deploy to Vercel
         env:
           VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Pulls Vercel token from GitHub secrets
-        run: npx vercel --prod --yes --token $VERCEL_TOKEN 
-        #run: npx vercel --prod  # Runs the Vercel deployment in production mode
-        #env:
-        #  VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Uses the Vercel token from GitHub Secrets
+        run: |
+          URL=$(npx vercel --prod --yes --token $VERCEL_TOKEN)
+          echo "DEPLOY_URL=$URL" >> $GITHUB_OUTPUT
 
   # NUEVO JOB: Ejecuta Cypress desde tu repositorio externo de GitHub
   cypress-e2e:
@@ -102,8 +103,8 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           working-directory: cypress-tests
-          install: false
-          config: baseUrl=https://l15-ojq8lhcdm-ados-projects-0eb7f124.vercel.app/
+          install: false 
+          config: baseUrl=${{ needs.deploy.outputs.vercel_url }}
           component: false
           record: false
           publish-summary: true
