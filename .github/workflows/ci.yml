@@ -66,8 +66,10 @@ jobs:
         uses: actions/checkout@v4 #  Re-checks out the code for deployment
 
       - name: Deploy to Vercel
+        id: deploy-vercel
         env:
-          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}  # Pulls Vercel token from GitHub secrets
+          VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
+        # 💡 Usamos --confirm y limpiamos la salida para extraer SOLO la URL limpia
         run: |
           URL=$(npx vercel --prod --yes --token $VERCEL_TOKEN | tail -n 1)
           echo "DEPLOY_URL=$URL" >> $GITHUB_OUTPUT
@@ -98,6 +100,10 @@ jobs:
         run: npm install #' / 'yarn install' / 'pnpm install'
         working-directory: cypress-tests # 👈 This tells npm where to find package.json
 
+              # 💡 Añadimos este paso para asegurarnos en los logs de qué URL se está leyendo realmente
+      - name: Debug URL
+        run: echo "La URL recibida de Vercel es ${{ needs.deploy.outputs.vercel_url }}"
+          
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         # 💡 Pasamos la URL como variable de entorno nativa de Cypress
