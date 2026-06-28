@@ -110,12 +110,12 @@ jobs:
         run: |
           npm install cypress --save-dev
           npm install
-        working-directory: cypress-tests
-        
+        working-directory: cypress-tests/e2e
+
       - name: Run Cypress Tests
         uses: cypress-io/github-action@v6
         with:
-          working-directory: cypress-tests
+          working-directory: cypress-tests/e2e
           #install-command: npm ci 
           install: false
           config: baseUrl=https://l15-ojq8lhcdm-ados-projects-0eb7f124.vercel.app/
