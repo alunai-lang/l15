@@ -143,7 +143,7 @@ return (
         
         <ul>
            {Object.entries(formDataD).map(([name, value]) => (
-             <li key={name}><strong>Descripción</strong>: {value.toString()}</li>
+             <li key={name}><strong>Description</strong>: {value.toString()}</li>
            ))}
          </ul> 
          
